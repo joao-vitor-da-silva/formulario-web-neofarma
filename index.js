@@ -8,8 +8,12 @@ const __dirname = path.dirname(__filename);
 
 const host = "0.0.0.0";
 const port = 3000;
+var listaDeProdutos = [];
 
 const server = express();
+
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
 
 // Servir a pasta public (onde ficam os arquivos HTML e CSS)
 server.use(express.static(path.join(__dirname, "public")));
@@ -72,6 +76,8 @@ server.post("/resultado", (req, res) => {
   // redireciona para a rota que lista os produtos
   return res.redirect("/listar");
 });
+
+
 
 server.listen(port, host, () => {
   console.log(
