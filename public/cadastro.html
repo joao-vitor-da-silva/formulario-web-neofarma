@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cadastro de Produtos — Farmácia</title>
+
+  <!-- Fonte moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/public/css/cadastro.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="top">
+      <div>
+        <h1>Cadastro de Produto — Farmácia</h1>
+        <p class="subtitle">Registre medicamentos, cosméticos e itens de perfumaria com segurança.</p>
+      </div>
+      <a href="/" style="text-decoration: none;"><div class="brand">HOME</div></a >
+    </header>
+
+    <form id="productForm" action="/resultado" method="POST" novalidate>
+      <section class="card form-grid">
+
+        <!-- Linha 1 -->
+        <div class="field">
+          <label for="nome">Nome do produto <span class="req">*</span></label>
+          <input id="nome" name="nome" type="text" placeholder="Ex: Paracetamol 500mg" required maxlength="120" />
+        </div>
+
+        <div class="field">
+          <label for="marca">Marca</label>
+          <input id="marca" name="marca" type="text" placeholder="Ex: Genérico / Marca X" maxlength="60" />
+        </div>
+
+        <div class="field">
+          <label for="categoria">Categoria <span class="req">*</span></label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Selecione...</option>
+            <option>Medicamento</option>
+            <option>Suplemento</option>
+            <option>Dermocosmético</option>
+            <option>Higiene</option>
+            <option>Equipamento Médico</option>
+            <option>Outros</option>
+          </select>
+        </div>
+
+        <!-- Linha 2 -->
+        <div class="field">
+          <label for="barras">Código de barras (EAN)</label>
+          <input id="barras" name="barras" type="text" inputmode="numeric" pattern="^\d{8,14}$" placeholder="Somente números (8-14 dígitos)" />
+        </div>
+
+        <div class="field">
+          <label for="lote">Lote</label>
+          <input id="lote" name="lote" type="text" placeholder="Ex: L2025A" maxlength="30" />
+        </div>
+
+        <div class="field">
+          <label for="validade">Validade <span class="req">*</span></label>
+          <input id="validade" name="validade" type="month" required />
+        </div>
+
+        <!-- Linha 3 -->
+        <div class="field">
+          <label for="fornecedor">Fornecedor / Distribuidora</label>
+          <input id="fornecedor" name="fornecedor" type="text" maxlength="80" placeholder="Nome do fornecedor" />
+        </div>
+
+        <div class="field">
+          <label for="preco">Preço unitário (R$) <span class="req">*</span></label>
+          <input id="preco" name="preco" type="number" step="0.01" min="0" required placeholder="0.00" />
+        </div>
+
+        <div class="field">
+          <label for="quantidade">Quantidade em estoque <span class="req">*</span></label>
+          <input id="quantidade" name="quantidade" type="number" min="0" step="1" required placeholder="0" />
+        </div>
+
+        <!-- Linha 4 -->
+        <div class="field radio-row">
+          <label>Precisa de receita?</label>
+          <div class="radios">
+            <label><input type="radio" name="receita" value="sim" /> Sim</label>
+            <label><input type="radio" name="receita" value="nao" checked /> Não</label>
+          </div>
+        </div>
+
+        <div class="field checkbox-col">
+          <label><input id="controlado" name="controlado" type="checkbox" /> Produto controlado (Anvisa)</label>
+          <small class="hint">Marque se for medicamento sujeito a controle especial.</small>
+        </div>
+
+        <div class="field">
+          <label for="forma">Forma farmacêutica</label>
+          <select id="forma" name="forma">
+            <option value="">Selecione...</option>
+            <option>Comprimido</option>
+            <option>Cápsula</option>
+            <option>Suspensão</option>
+            <option>Creme / Gel</option>
+            <option>Pomada</option>
+            <option>Solução</option>
+            <option>Spray</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <!-- Linha 5 -->
+        <div class="field wide">
+          <label for="ingredientes">Ingredientes / Princípio ativo</label>
+          <input id="ingredientes" name="ingredientes" type="text" maxlength="200" placeholder="Ex: Paracetamol 500mg" />
+        </div>
+
+        <div class="field wide">
+          <label for="armazenamento">Condições de armazenamento</label>
+          <input id="armazenamento" name="armazenamento" type="text" maxlength="100" placeholder="Ex: Conservar em local seco, 15–25°C" />
+        </div>
+
+        <!-- Linha 6 -->
+        <div class="field full">
+          <label for="descricao">Descrição / Observações</label>
+          <textarea id="descricao" name="descricao" rows="4" placeholder="Descrição breve, recomendações, advertências..."></textarea>
+        </div>
+
+        
+        <div class="field actions-col">
+          <div class="actions">
+            <button type="submit" class="btn primary">Salvar produto</button>
+            <button type="reset" class="btn ghost">Limpar formulário</button>
+          </div>
+
+          <div class="small-note">
+            <strong>Observação:</strong> campos com <span class="req">*</span> são obrigatórios.
+            Após salvar, verifique o cadastro no painel de produtos.
+          </div>
+        </div>
+
+      </section>
+    </form>
+
+    <footer class="foot">
+      <small>Desenvolvido para exercício — mantenha os dados sensíveis em ambiente seguro.</small>
+    </footer>
+  </main>
+
+   <!-- container para mensagens flutuantes -->
+  <div id="toast-container">
+    
+  </div>
+
+  <script src="/public/script.js " ></script>
+  
+
+  
+</body>
+</html>

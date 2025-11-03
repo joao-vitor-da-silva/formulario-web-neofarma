@@ -22,6 +22,11 @@ server.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
+// Rota de cadastro → mostra o formulário de cadastro de medicamentos e afins
+server.get("/cadastro", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "cadastro.html"));
+});
+
 server.listen(port, host, () => {
   console.log(
     `Servidor rodando em http://${host}:${port} \n Servidor rodando em http://localhost:${port}`
