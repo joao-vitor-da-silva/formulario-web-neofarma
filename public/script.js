@@ -20,11 +20,10 @@ function showToast(message, type = "error") {
 (function setMinValidity() {
   const now = new Date();
   const yyyy = now.getFullYear();
-  const mm = String(now.getMonth() + 1).padStart(2, '0');
-  const dd = String(now.getDate()).padStart(2, '0');
+  const mm = String(now.getMonth() + 1).padStart(2, "0");
+  const dd = String(now.getDate()).padStart(2, "0");
   validadeInput.min = `${yyyy}-${mm}-${dd}`; // formato YYYY-MM-DD
 })();
-
 
 // Formatação de preço — sempre duas casas decimais
 precoInput.addEventListener("blur", () => {
@@ -51,27 +50,29 @@ form.addEventListener("submit", (e) => {
     return;
   }
 
-    // Verificar validade preenchida e não anterior à data atual
-    if (!validadeInput.value) {
+  // Verificar validade preenchida e não anterior à data atual
+  if (!validadeInput.value) {
     e.preventDefault();
     showToast("⚠️ Informe a data de validade.", "warning");
     validadeInput.classList.add("invalid");
     return;
-    }
+  }
 
-    const hoje = new Date();
-    const validadeData = new Date(validadeInput.value);
+  const hoje = new Date();
+  const validadeData = new Date(validadeInput.value);
 
-    // impede selecionar datas anteriores a hoje
-    if (validadeData < hoje) {
+  // impede selecionar datas anteriores a hoje
+  if (validadeData < hoje) {
     e.preventDefault();
-    showToast("❌ A data de validade não pode ser anterior à data atual.", "error");
+    showToast(
+      "❌ A data de validade não pode ser anterior à data atual.",
+      "error"
+    );
     validadeInput.classList.add("invalid");
     return;
-    } else {
+  } else {
     validadeInput.classList.remove("invalid");
-    }
-
+  }
 
   if (preco <= 0) {
     e.preventDefault();
